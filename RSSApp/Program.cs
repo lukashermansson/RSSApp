@@ -14,8 +14,8 @@ namespace RSSApp
         [STAThread]
         static void Main()
         {
-            //var x = new RSSFetcher(new Uri("https://rss.acast.com/filipandfredrik"));
-            //var podcast = x.Fetch();
+            var x = new RSSFetcher(new Uri("https://rss.acast.com/filipandfredrik"));
+            var podcast = x.Fetch();
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
