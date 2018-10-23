@@ -8,15 +8,15 @@ public class RSSItem {
     public DateTime PublisedDate { get; set; }
 
 
-    public RSSFeed() {
+    public RSSItem() {
 
     }
 
 
-    public RSSFeed(String Title) {
+    public RSSItem(String Title) {
         this.Title = Title;
     }
-    public RSSFeed(String Title, String Description) {
+    public RSSItem(String Title, String Description) {
         this.Title = Title;
     }
 }
