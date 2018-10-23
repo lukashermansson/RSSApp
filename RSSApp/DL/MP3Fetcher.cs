@@ -1,8 +1,9 @@
 
 
+using RSSApp.models;
 using System;
 
-namespace RSSApp {
+namespace RSSApp.DL {
 
     public class MP3Fetcher : IFetch<AudioData> {
         public Uri FetchURL { get; set; }

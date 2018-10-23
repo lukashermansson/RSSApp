@@ -47,10 +47,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DLL\FeedsController.cs" />
+    <Compile Include="BLL\CategoriesController.cs" />
+    <Compile Include="BLL\Validation.cs" />
+    <Compile Include="BLL\FeedsController.cs" />
     <Compile Include="DL\IFetch.cs" />
     <Compile Include="DL\MP3Fetcher.cs" />
     <Compile Include="DL\RSSFetcher.cs" />
+    <Compile Include="Exeptions\ValidationExeption.cs" />
+    <Compile Include="models\Category.cs" />
     <Compile Include="PL\Form1.cs">
       <SubType>Form</SubType>
     </Compile>

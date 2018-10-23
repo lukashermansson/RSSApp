@@ -1,13 +1,15 @@
-﻿using System;
+﻿using RSSApp.models;
+using System;
 using System.Collections.Generic;
 
-namespace RSSApp {
+namespace RSSApp.models {
 
     public class RSSFeed {
 
         public Uri URI { get; set; }
         public List<RSSItem> Podcasts { get; set; }
         public String Title { get; set; }
+        public Category Category { get; set; }
 
 
 

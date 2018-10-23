@@ -1,7 +1,7 @@
 
 using System;
 
-namespace RSSApp {
+namespace RSSApp.models {
 
 
     public class RSSItem {

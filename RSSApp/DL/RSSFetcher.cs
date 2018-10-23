@@ -1,4 +1,5 @@
-﻿namespace RSSApp {
+﻿namespace RSSApp.DL {
+    using RSSApp.models;
     using System;
     using System.Collections.Generic;
     using System.ServiceModel.Syndication;

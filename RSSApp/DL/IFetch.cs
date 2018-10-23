@@ -1,6 +1,6 @@
 using System;
 
-namespace RSSApp {
+namespace RSSApp.DL {
     interface IFetch<T> {
 
         Uri FetchURL { get; set; }
