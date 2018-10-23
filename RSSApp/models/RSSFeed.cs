@@ -1,15 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace RSSApp {
 
     public class RSSFeed {
 
-        public String URL { get; set; }
+        public Uri URI { get; set; }
         public List<RSSItem> Podcasts { get; set; }
+        public String Title { get; set; }
 
 
-        public RSSFeed(String URL) {
-            this.URL = URL;
+
+        public RSSFeed(Uri URI) {
+            this.URI = URI;
             Podcasts = new List<RSSItem>();
         }
 
