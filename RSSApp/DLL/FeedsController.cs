@@ -13,7 +13,8 @@ namespace RSSApp.DLL {
 
 
 
-            
+            //testdata 
+            AddFeed(new Uri("https://rss.acast.com/filipandfredrik"));
         }
         public void AddFeed(Uri uri) {
             PodcastFeeds.Add(new RSSFetcher(uri).Fetch());
@@ -22,7 +23,7 @@ namespace RSSApp.DLL {
             PodcastFeeds.Add(feed);
         }
 
-        public List<RSSFeed> GetFeed() {
+        public List<RSSFeed> GetFeeds() {
             return PodcastFeeds;
         }
     }
