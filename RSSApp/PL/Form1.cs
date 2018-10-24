@@ -1,6 +1,7 @@
 ﻿using RSSApp.BLL;
 using RSSApp.Exeptions;
 using RSSApp.models;
+using RSSApp.PL;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,11 +15,11 @@ using System.Xml;
 
 namespace RSSApp
 {
-    public partial class Form1 : Form {
+    public partial class PodcastPlayer : Form {
         private FeedsController Feeds{ get; set; }
         private CategoriesController categories { get; set; }
 
-        public Form1()
+        public PodcastPlayer()
         {
             Feeds = new FeedsController();
             categories = new CategoriesController();
@@ -136,6 +137,14 @@ namespace RSSApp
                 ListViewItem Item = new ListViewItem(podcast.Title);
                 Item.Tag = podcast;
                 lvAvsnitt.Items.Add(Item);
+            }
+        }
+
+        private void lvAvsnitt_DoubleClick(object sender, EventArgs e) {
+            if (lvAvsnitt.SelectedItems[0] != null) {
+                var podcast = (RSSItem)lvAvsnitt.SelectedItems[0].Tag;
+
+                new PodcastForm(podcast);
             }
         }
     }

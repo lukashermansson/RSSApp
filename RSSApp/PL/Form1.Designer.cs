@@ -1,6 +1,6 @@
 ﻿namespace RSSApp
 {
-    partial class Form1
+    partial class PodcastPlayer
     {
         /// <summary>
         /// Required designer variable.
@@ -49,7 +49,9 @@
             this.btnSparaKategori = new System.Windows.Forms.Button();
             this.btnTaBortKategori = new System.Windows.Forms.Button();
             this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.categoriesControllerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -109,15 +111,17 @@
             // columnHeader1
             // 
             this.columnHeader1.Text = "Namn";
+            this.columnHeader1.Width = 109;
             // 
             // columnHeader2
             // 
             this.columnHeader2.Text = "Avsnitt";
+            this.columnHeader2.Width = 65;
             // 
             // columnHeader3
             // 
             this.columnHeader3.Text = "Kategori";
-            this.columnHeader3.Width = 124;
+            this.columnHeader3.Width = 132;
             // 
             // lvAvsnitt
             // 
@@ -128,6 +132,7 @@
             this.lvAvsnitt.TabIndex = 7;
             this.lvAvsnitt.UseCompatibleStateImageBehavior = false;
             this.lvAvsnitt.View = System.Windows.Forms.View.List;
+            this.lvAvsnitt.DoubleClick += new System.EventHandler(this.lvAvsnitt_DoubleClick);
             // 
             // label3
             // 
@@ -235,7 +240,11 @@
             // 
             this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
-            // Form1
+            // categoriesControllerBindingSource1
+            // 
+            this.categoriesControllerBindingSource1.DataSource = typeof(RSSApp.BLL.CategoriesController);
+            // 
+            // PodcastPlayer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -256,10 +265,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "PodcastPlayer";
+            this.Text = "PodcastPlayer";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -286,6 +296,7 @@
         private System.Windows.Forms.Button btnTaBortKategori;
         private System.Windows.Forms.ColumnHeader columnHeader4;
         private System.Windows.Forms.BindingSource categoriesControllerBindingSource;
+        private System.Windows.Forms.BindingSource categoriesControllerBindingSource1;
     }
 }
 
