@@ -42,11 +42,11 @@
             this.button2 = new System.Windows.Forms.Button();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.tbKategoryName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cbFeedCategory = new System.Windows.Forms.ComboBox();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -229,7 +229,7 @@
             this.tableLayoutPanel7.ColumnCount = 1;
             this.tableLayoutPanel7.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel7.Controls.Add(this.label2, 0, 0);
-            this.tableLayoutPanel7.Controls.Add(this.comboBox1, 0, 1);
+            this.tableLayoutPanel7.Controls.Add(this.cbFeedCategory, 0, 1);
             this.tableLayoutPanel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel7.Location = new System.Drawing.Point(179, 0);
             this.tableLayoutPanel7.Margin = new System.Windows.Forms.Padding(0);
@@ -291,7 +291,7 @@
             this.tableLayoutPanel9.ColumnCount = 1;
             this.tableLayoutPanel9.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel9.Controls.Add(this.label3, 0, 0);
-            this.tableLayoutPanel9.Controls.Add(this.textBox3, 0, 1);
+            this.tableLayoutPanel9.Controls.Add(this.tbKategoryName, 0, 1);
             this.tableLayoutPanel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel9.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel9.Margin = new System.Windows.Forms.Padding(0);
@@ -312,13 +312,13 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "Kategorinamn";
             // 
-            // textBox3
+            // tbKategoryName
             // 
-            this.textBox3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBox3.Location = new System.Drawing.Point(3, 16);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(335, 20);
-            this.textBox3.TabIndex = 1;
+            this.tbKategoryName.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tbKategoryName.Location = new System.Drawing.Point(3, 16);
+            this.tbKategoryName.Name = "tbKategoryName";
+            this.tbKategoryName.Size = new System.Drawing.Size(335, 20);
+            this.tbKategoryName.TabIndex = 1;
             // 
             // tableLayoutPanel10
             // 
@@ -357,14 +357,14 @@
             this.button4.Text = "Ta bort";
             this.button4.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
+            // cbFeedCategory
             // 
-            this.comboBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(3, 16);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(173, 21);
-            this.comboBox1.TabIndex = 1;
+            this.cbFeedCategory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.cbFeedCategory.FormattingEnabled = true;
+            this.cbFeedCategory.Location = new System.Drawing.Point(3, 16);
+            this.cbFeedCategory.Name = "cbFeedCategory";
+            this.cbFeedCategory.Size = new System.Drawing.Size(173, 21);
+            this.cbFeedCategory.TabIndex = 1;
             // 
             // Column1
             // 
@@ -436,11 +436,11 @@
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox tbKategoryName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cbFeedCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
