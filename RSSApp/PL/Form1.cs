@@ -23,7 +23,6 @@ namespace RSSApp
             Feeds = new FeedsController();
             categories = new CategoriesController();
 
-            categories.AddCategory(new Category("Action"));
             InitializeComponent();
         }
 
@@ -34,9 +33,7 @@ namespace RSSApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            foreach (var item in categories.GetCategories()) {
-                cboKategori.Items.Add(item);
-            }
+            
             
            
         }
@@ -44,7 +41,9 @@ namespace RSSApp
         private void UpdateFeedList() {
             lvFeed.Items.Clear();
             foreach (var Feed in Feeds.GetFeeds()) {
-                lvFeed.Items.Add(new ListViewItem(new string[] { Feed.Title, Feed.Podcasts.Count.ToString(), Feed.Category.ToString() }));
+                var item = new ListViewItem(new string[] { Feed.Title, Feed.Podcasts.Count.ToString(), Feed.Category.ToString() });
+                item.Tag = Feed;
+                lvFeed.Items.Add(item);
             }
         }
 
@@ -52,6 +51,18 @@ namespace RSSApp
             lvKategorier.Items.Clear();
             foreach (var category in categories.GetCategories()) {
                 lvKategorier.Items.Add(category.ToString());
+            }
+        }
+
+        private void UpdateCategories() {
+            UpdateCategoriesComboBox();
+            UpdateCategoriesList();
+        }
+
+        private void UpdateCategoriesComboBox() {
+            cboKategori.Items.Clear();
+            foreach (var item in categories.GetCategories()) {
+                cboKategori.Items.Add(item);
             }
         }
 
@@ -81,7 +92,7 @@ namespace RSSApp
             tbKategori.Clear();
 
 
-            UpdateCategoriesList();
+            UpdateCategories();
 
         }
 
@@ -111,8 +122,21 @@ namespace RSSApp
             UpdateFeedList();
         }
 
-        private void cboKategori_SelectedIndexChanged(object sender, EventArgs e) {
+        private void lvFeed_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e) {
+            var feed = (RSSFeed)e.Item.Tag;
 
+
+            PupulatePodcastList(feed.Podcasts);
+        }
+
+        private void PupulatePodcastList(List<RSSItem> podcasts) {
+            lvAvsnitt.Clear();
+
+            foreach (var podcast in podcasts) {
+                ListViewItem Item = new ListViewItem(podcast.Title);
+                Item.Tag = podcast;
+                lvAvsnitt.Items.Add(Item);
+            }
         }
     }
 }

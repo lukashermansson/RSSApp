@@ -46,9 +46,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cboKategori = new System.Windows.Forms.ComboBox();
-            this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSparaKategori = new System.Windows.Forms.Button();
             this.btnTaBortKategori = new System.Windows.Forms.Button();
+            this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -103,6 +103,7 @@
             this.lvFeed.TabIndex = 6;
             this.lvFeed.UseCompatibleStateImageBehavior = false;
             this.lvFeed.View = System.Windows.Forms.View.Details;
+            this.lvFeed.ItemSelectionChanged += new System.Windows.Forms.ListViewItemSelectionChangedEventHandler(this.lvFeed_ItemSelectionChanged);
             this.lvFeed.SelectedIndexChanged += new System.EventHandler(this.lvFeed_SelectedIndexChanged);
             // 
             // columnHeader1
@@ -126,6 +127,7 @@
             this.lvAvsnitt.Size = new System.Drawing.Size(312, 87);
             this.lvAvsnitt.TabIndex = 7;
             this.lvAvsnitt.UseCompatibleStateImageBehavior = false;
+            this.lvAvsnitt.View = System.Windows.Forms.View.List;
             // 
             // label3
             // 
@@ -205,11 +207,6 @@
             this.cboKategori.Name = "cboKategori";
             this.cboKategori.Size = new System.Drawing.Size(115, 21);
             this.cboKategori.TabIndex = 17;
-            this.cboKategori.SelectedIndexChanged += new System.EventHandler(this.cboKategori_SelectedIndexChanged);
-            // 
-            // categoriesControllerBindingSource
-            // 
-            this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
             // btnSparaKategori
             // 
@@ -233,6 +230,10 @@
             this.btnTaBortKategori.TabIndex = 19;
             this.btnTaBortKategori.Text = "Ta bort";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
+            // 
+            // categoriesControllerBindingSource
+            // 
+            this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
             // Form1
             // 
