@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
 
 namespace RSSApp
 {
@@ -33,7 +34,10 @@ namespace RSSApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            //cboKategori.Items.Add(categories.GetCategories());
+            foreach (var item in categories.GetCategories()) {
+                cboKategori.Items.Add(item);
+            }
+            
            
         }
 
@@ -84,14 +88,18 @@ namespace RSSApp
         private void btnSparaPodcast_Click(object sender, EventArgs e) {
             string feedUrl = tbURL.Text;
             try {
-                Feeds.AddFeed(new Uri(feedUrl));
+                
+                Feeds.AddFeed(new Uri(feedUrl), (Category)cboKategori.SelectedItem);
             } catch (Exception ex) {
                 var message = "";
                 if (ex is ValidationExeption) {
                     message = ex.Message;
                 }
                 if (ex is UriFormatException) {
-                    message = "Url kan inte vara tom";
+                    message = "Ogiltig URL";
+                }
+                if (ex is XmlException) {
+                    message = "Ogiltig RRS data";
                 }
                 var result = MessageBox.Show(message);
                 

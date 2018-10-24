@@ -46,9 +46,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.cboKategori = new System.Windows.Forms.ComboBox();
+            this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnSparaKategori = new System.Windows.Forms.Button();
             this.btnTaBortKategori = new System.Windows.Forms.Button();
-            this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -199,7 +199,6 @@
             // 
             // cboKategori
             // 
-            this.cboKategori.DataSource = this.categoriesControllerBindingSource;
             this.cboKategori.FormattingEnabled = true;
             this.cboKategori.Location = new System.Drawing.Point(205, 150);
             this.cboKategori.Margin = new System.Windows.Forms.Padding(2);
@@ -207,6 +206,10 @@
             this.cboKategori.Size = new System.Drawing.Size(115, 21);
             this.cboKategori.TabIndex = 17;
             this.cboKategori.SelectedIndexChanged += new System.EventHandler(this.cboKategori_SelectedIndexChanged);
+            // 
+            // categoriesControllerBindingSource
+            // 
+            this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
             // btnSparaKategori
             // 
@@ -230,10 +233,6 @@
             this.btnTaBortKategori.TabIndex = 19;
             this.btnTaBortKategori.Text = "Ta bort";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
-            // 
-            // categoriesControllerBindingSource
-            // 
-            this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
             // Form1
             // 

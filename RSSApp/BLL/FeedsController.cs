@@ -18,9 +18,11 @@ namespace RSSApp.BLL {
 
            
         }
-        public void AddFeed(Uri uri) {
+        public void AddFeed(Uri uri, Category category) {
             try {
-                AddFeed(new RSSFetcher(uri).Fetch());
+                var feed = new RSSFetcher(uri).Fetch();
+                feed.Category = category;
+                AddFeed(feed);
             } catch (ValidationExeption ex) {
                 throw ex;
             } 
