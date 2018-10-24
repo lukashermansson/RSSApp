@@ -1,4 +1,5 @@
 ﻿using RSSApp.DL;
+using RSSApp.Exeptions;
 using RSSApp.models;
 using System;
 using System.Collections.Generic;
@@ -18,9 +19,19 @@ namespace RSSApp.BLL {
            
         }
         public void AddFeed(Uri uri) {
-            PodcastFeeds.Add(new RSSFetcher(uri).Fetch());
+            try {
+                AddFeed(new RSSFetcher(uri).Fetch());
+            } catch (ValidationExeption ex) {
+                throw ex;
+            } 
         }
         public void AddFeed(RSSFeed feed) {
+            try {
+                Validation.ValidateFeed(feed);
+            } catch (ValidationExeption ex) {
+                throw ex;
+            }
+            
             PodcastFeeds.Add(feed);
         }
         

@@ -1,4 +1,5 @@
 ﻿using RSSApp.BLL;
+using RSSApp.Exeptions;
 using RSSApp.models;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,8 @@ namespace RSSApp
         {
             Feeds = new FeedsController();
             categories = new CategoriesController();
+
+            categories.AddCategory(new Category("Action"));
             InitializeComponent();
         }
 
@@ -30,7 +33,7 @@ namespace RSSApp
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+            //cboKategori.Items.Add(categories.GetCategories());
            
         }
 
@@ -65,11 +68,42 @@ namespace RSSApp
 
         private void btnSparaKategori_Click(object sender, EventArgs e) {
             string Kategorinamn = tbKategori.Text;
-            categories.AddCategory(Kategorinamn);
+            try {
+                categories.AddCategory(Kategorinamn);
+            } catch(ValidationExeption ex){
+                var result = MessageBox.Show(ex.Message);
+            }
+            
             tbKategori.Clear();
 
 
             UpdateCategoriesList();
+
+        }
+
+        private void btnSparaPodcast_Click(object sender, EventArgs e) {
+            string feedUrl = tbURL.Text;
+            try {
+                Feeds.AddFeed(new Uri(feedUrl));
+            } catch (Exception ex) {
+                var message = "";
+                if (ex is ValidationExeption) {
+                    message = ex.Message;
+                }
+                if (ex is UriFormatException) {
+                    message = "Url kan inte vara tom";
+                }
+                var result = MessageBox.Show(message);
+                
+            }
+
+            tbURL.Clear();
+
+
+            UpdateFeedList();
+        }
+
+        private void cboKategori_SelectedIndexChanged(object sender, EventArgs e) {
 
         }
     }

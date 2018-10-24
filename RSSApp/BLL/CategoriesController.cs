@@ -1,4 +1,5 @@
-﻿using RSSApp.models;
+﻿using RSSApp.Exeptions;
+using RSSApp.models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,13 +15,24 @@ namespace RSSApp.BLL {
         }
 
         public void AddCategory(Category category) {
-            if (Validation.ValidateCategory(category)) {
-                Categories.Add(category);
-            } 
+            try {
+                Validation.ValidateCategory(category);
+            } catch (ValidationExeption ex) {
+                throw ex;
+                
+            }
+            Categories.Add(category);
+
+
         }
         public void AddCategory(string categoryName) {
             var category = new Category(categoryName);
-            AddCategory(category);
+            
+            try {
+                AddCategory(category);
+            } catch (ValidationExeption ex) {
+                throw ex;
+            }
         }
 
         public List<Category> GetCategories() {

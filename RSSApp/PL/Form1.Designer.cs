@@ -28,9 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lvKategorier = new System.Windows.Forms.ListView();
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lvFeed = new System.Windows.Forms.ListView();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -46,7 +48,8 @@
             this.cboKategori = new System.Windows.Forms.ComboBox();
             this.btnSparaKategori = new System.Windows.Forms.Button();
             this.btnTaBortKategori = new System.Windows.Forms.Button();
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -76,12 +79,16 @@
             this.lvKategorier.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader4});
             this.lvKategorier.Location = new System.Drawing.Point(334, 24);
-            this.lvKategorier.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvKategorier.Margin = new System.Windows.Forms.Padding(2);
             this.lvKategorier.Name = "lvKategorier";
             this.lvKategorier.Size = new System.Drawing.Size(340, 111);
             this.lvKategorier.TabIndex = 5;
             this.lvKategorier.UseCompatibleStateImageBehavior = false;
             this.lvKategorier.View = System.Windows.Forms.View.List;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Kategori";
             // 
             // lvFeed
             // 
@@ -90,7 +97,7 @@
             this.columnHeader2,
             this.columnHeader3});
             this.lvFeed.Location = new System.Drawing.Point(9, 25);
-            this.lvFeed.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvFeed.Margin = new System.Windows.Forms.Padding(2);
             this.lvFeed.Name = "lvFeed";
             this.lvFeed.Size = new System.Drawing.Size(311, 110);
             this.lvFeed.TabIndex = 6;
@@ -114,7 +121,7 @@
             // lvAvsnitt
             // 
             this.lvAvsnitt.Location = new System.Drawing.Point(8, 234);
-            this.lvAvsnitt.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.lvAvsnitt.Margin = new System.Windows.Forms.Padding(2);
             this.lvAvsnitt.Name = "lvAvsnitt";
             this.lvAvsnitt.Size = new System.Drawing.Size(312, 87);
             this.lvAvsnitt.TabIndex = 7;
@@ -133,7 +140,7 @@
             // tbURL
             // 
             this.tbURL.Location = new System.Drawing.Point(8, 150);
-            this.tbURL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbURL.Margin = new System.Windows.Forms.Padding(2);
             this.tbURL.Name = "tbURL";
             this.tbURL.Size = new System.Drawing.Size(180, 20);
             this.tbURL.TabIndex = 9;
@@ -143,7 +150,7 @@
             this.tbKategori.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbKategori.Location = new System.Drawing.Point(334, 150);
-            this.tbKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbKategori.Margin = new System.Windows.Forms.Padding(2);
             this.tbKategori.Name = "tbKategori";
             this.tbKategori.Size = new System.Drawing.Size(340, 20);
             this.tbKategori.TabIndex = 10;
@@ -151,17 +158,18 @@
             // btnSparaPodcast
             // 
             this.btnSparaPodcast.Location = new System.Drawing.Point(205, 179);
-            this.btnSparaPodcast.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSparaPodcast.Margin = new System.Windows.Forms.Padding(2);
             this.btnSparaPodcast.Name = "btnSparaPodcast";
             this.btnSparaPodcast.Size = new System.Drawing.Size(52, 19);
             this.btnSparaPodcast.TabIndex = 11;
             this.btnSparaPodcast.Text = "Spara";
             this.btnSparaPodcast.UseVisualStyleBackColor = true;
+            this.btnSparaPodcast.Click += new System.EventHandler(this.btnSparaPodcast_Click);
             // 
             // btnTaBortPodcast
             // 
             this.btnTaBortPodcast.Location = new System.Drawing.Point(267, 179);
-            this.btnTaBortPodcast.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTaBortPodcast.Margin = new System.Windows.Forms.Padding(2);
             this.btnTaBortPodcast.Name = "btnTaBortPodcast";
             this.btnTaBortPodcast.Size = new System.Drawing.Size(52, 19);
             this.btnTaBortPodcast.TabIndex = 13;
@@ -191,18 +199,20 @@
             // 
             // cboKategori
             // 
+            this.cboKategori.DataSource = this.categoriesControllerBindingSource;
             this.cboKategori.FormattingEnabled = true;
             this.cboKategori.Location = new System.Drawing.Point(205, 150);
-            this.cboKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cboKategori.Margin = new System.Windows.Forms.Padding(2);
             this.cboKategori.Name = "cboKategori";
             this.cboKategori.Size = new System.Drawing.Size(115, 21);
             this.cboKategori.TabIndex = 17;
+            this.cboKategori.SelectedIndexChanged += new System.EventHandler(this.cboKategori_SelectedIndexChanged);
             // 
             // btnSparaKategori
             // 
             this.btnSparaKategori.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSparaKategori.Location = new System.Drawing.Point(559, 179);
-            this.btnSparaKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnSparaKategori.Margin = new System.Windows.Forms.Padding(2);
             this.btnSparaKategori.Name = "btnSparaKategori";
             this.btnSparaKategori.Size = new System.Drawing.Size(52, 19);
             this.btnSparaKategori.TabIndex = 18;
@@ -214,16 +224,16 @@
             // 
             this.btnTaBortKategori.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnTaBortKategori.Location = new System.Drawing.Point(621, 179);
-            this.btnTaBortKategori.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTaBortKategori.Margin = new System.Windows.Forms.Padding(2);
             this.btnTaBortKategori.Name = "btnTaBortKategori";
             this.btnTaBortKategori.Size = new System.Drawing.Size(52, 19);
             this.btnTaBortKategori.TabIndex = 19;
             this.btnTaBortKategori.Text = "Ta bort";
             this.btnTaBortKategori.UseVisualStyleBackColor = true;
             // 
-            // columnHeader4
+            // categoriesControllerBindingSource
             // 
-            this.columnHeader4.Text = "Kategori";
+            this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
             // Form1
             // 
@@ -245,10 +255,11 @@
             this.Controls.Add(this.lvKategorier);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -274,6 +285,7 @@
         private System.Windows.Forms.Button btnSparaKategori;
         private System.Windows.Forms.Button btnTaBortKategori;
         private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.BindingSource categoriesControllerBindingSource;
     }
 }
 
