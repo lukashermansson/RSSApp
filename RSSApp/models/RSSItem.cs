@@ -17,7 +17,9 @@ namespace RSSApp.models {
         public RSSItem() {
 
         }
-
+        public override String ToString() {
+            return Title;
+        }
 
         public RSSItem(String Title) {
             this.Title = Title;

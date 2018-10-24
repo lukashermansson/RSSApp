@@ -19,6 +19,9 @@ namespace RSSApp.BLL {
            
         }
         public void AddFeed(Uri uri, Category category) {
+            if (category == null) {
+                throw new ArgumentException();
+            }
             try {
                 var feed = new RSSFetcher(uri).Fetch();
                 feed.Category = category;

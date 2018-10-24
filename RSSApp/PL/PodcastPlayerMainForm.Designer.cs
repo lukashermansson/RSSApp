@@ -38,18 +38,18 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btFeedAdd = new System.Windows.Forms.Button();
+            this.btFeedRemove = new System.Windows.Forms.Button();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
             this.tbKategoryName = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
+            this.btCategoryAdd = new System.Windows.Forms.Button();
+            this.btCategoryRemove = new System.Windows.Forms.Button();
             this.cbFeedCategory = new System.Windows.Forms.ComboBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNumEpisodes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
@@ -127,9 +127,9 @@
             this.gvFeeds.AllowUserToDeleteRows = false;
             this.gvFeeds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvFeeds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3});
+            this.ColName,
+            this.ColNumEpisodes,
+            this.ColCategory});
             this.gvFeeds.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvFeeds.Location = new System.Drawing.Point(3, 3);
             this.gvFeeds.MultiSelect = false;
@@ -137,6 +137,7 @@
             this.gvFeeds.ReadOnly = true;
             this.gvFeeds.Size = new System.Drawing.Size(534, 221);
             this.gvFeeds.TabIndex = 0;
+            this.gvFeeds.SelectionChanged += new System.EventHandler(this.gvFeeds_SelectionChanged);
             // 
             // tableLayoutPanel4
             // 
@@ -189,6 +190,7 @@
             this.lbEpisodes.Name = "lbEpisodes";
             this.lbEpisodes.Size = new System.Drawing.Size(534, 281);
             this.lbEpisodes.TabIndex = 2;
+            this.lbEpisodes.DoubleClick += new System.EventHandler(this.lbEpisodes_DoubleClick);
             // 
             // tableLayoutPanel6
             // 
@@ -255,8 +257,8 @@
             this.tableLayoutPanel8.ColumnCount = 2;
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel8.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel8.Controls.Add(this.button1, 0, 0);
-            this.tableLayoutPanel8.Controls.Add(this.button2, 1, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btFeedAdd, 0, 0);
+            this.tableLayoutPanel8.Controls.Add(this.btFeedRemove, 1, 0);
             this.tableLayoutPanel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel8.Location = new System.Drawing.Point(358, 0);
             this.tableLayoutPanel8.Margin = new System.Windows.Forms.Padding(0);
@@ -266,25 +268,26 @@
             this.tableLayoutPanel8.Size = new System.Drawing.Size(182, 60);
             this.tableLayoutPanel8.TabIndex = 2;
             // 
-            // button1
+            // btFeedAdd
             // 
-            this.button1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button1.Location = new System.Drawing.Point(3, 3);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(85, 54);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "Lägg till";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btFeedAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btFeedAdd.Location = new System.Drawing.Point(3, 3);
+            this.btFeedAdd.Name = "btFeedAdd";
+            this.btFeedAdd.Size = new System.Drawing.Size(85, 54);
+            this.btFeedAdd.TabIndex = 0;
+            this.btFeedAdd.Text = "Lägg till";
+            this.btFeedAdd.UseVisualStyleBackColor = true;
+            this.btFeedAdd.Click += new System.EventHandler(this.btFeedAdd_Click);
             // 
-            // button2
+            // btFeedRemove
             // 
-            this.button2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button2.Location = new System.Drawing.Point(94, 3);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(85, 54);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "Ta bort";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btFeedRemove.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btFeedRemove.Location = new System.Drawing.Point(94, 3);
+            this.btFeedRemove.Name = "btFeedRemove";
+            this.btFeedRemove.Size = new System.Drawing.Size(85, 54);
+            this.btFeedRemove.TabIndex = 1;
+            this.btFeedRemove.Text = "Ta bort";
+            this.btFeedRemove.UseVisualStyleBackColor = true;
             // 
             // tableLayoutPanel9
             // 
@@ -325,8 +328,8 @@
             this.tableLayoutPanel10.ColumnCount = 2;
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel10.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel10.Controls.Add(this.button3, 0, 0);
-            this.tableLayoutPanel10.Controls.Add(this.button4, 1, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btCategoryAdd, 0, 0);
+            this.tableLayoutPanel10.Controls.Add(this.btCategoryRemove, 1, 0);
             this.tableLayoutPanel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel10.Location = new System.Drawing.Point(341, 0);
             this.tableLayoutPanel10.Margin = new System.Windows.Forms.Padding(0);
@@ -336,26 +339,26 @@
             this.tableLayoutPanel10.Size = new System.Drawing.Size(200, 60);
             this.tableLayoutPanel10.TabIndex = 1;
             // 
-            // button3
+            // btCategoryAdd
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button3.Location = new System.Drawing.Point(3, 3);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 54);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "Lägg till";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
+            this.btCategoryAdd.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btCategoryAdd.Location = new System.Drawing.Point(3, 3);
+            this.btCategoryAdd.Name = "btCategoryAdd";
+            this.btCategoryAdd.Size = new System.Drawing.Size(94, 54);
+            this.btCategoryAdd.TabIndex = 0;
+            this.btCategoryAdd.Text = "Lägg till";
+            this.btCategoryAdd.UseVisualStyleBackColor = true;
+            this.btCategoryAdd.Click += new System.EventHandler(this.btCategoryAdd_Click);
             // 
-            // button4
+            // btCategoryRemove
             // 
-            this.button4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.button4.Location = new System.Drawing.Point(103, 3);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(94, 54);
-            this.button4.TabIndex = 1;
-            this.button4.Text = "Ta bort";
-            this.button4.UseVisualStyleBackColor = true;
+            this.btCategoryRemove.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btCategoryRemove.Location = new System.Drawing.Point(103, 3);
+            this.btCategoryRemove.Name = "btCategoryRemove";
+            this.btCategoryRemove.Size = new System.Drawing.Size(94, 54);
+            this.btCategoryRemove.TabIndex = 1;
+            this.btCategoryRemove.Text = "Ta bort";
+            this.btCategoryRemove.UseVisualStyleBackColor = true;
             // 
             // cbFeedCategory
             // 
@@ -366,27 +369,27 @@
             this.cbFeedCategory.Size = new System.Drawing.Size(173, 21);
             this.cbFeedCategory.TabIndex = 1;
             // 
-            // Column1
+            // ColName
             // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.HeaderText = "Namn";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
+            this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColName.HeaderText = "Namn";
+            this.ColName.Name = "ColName";
+            this.ColName.ReadOnly = true;
             // 
-            // Column2
+            // ColNumEpisodes
             // 
-            this.Column2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column2.HeaderText = "Avsnitt";
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            this.Column2.ToolTipText = "Antal avsnitt";
+            this.ColNumEpisodes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColNumEpisodes.HeaderText = "Avsnitt";
+            this.ColNumEpisodes.Name = "ColNumEpisodes";
+            this.ColNumEpisodes.ReadOnly = true;
+            this.ColNumEpisodes.ToolTipText = "Antal avsnitt";
             // 
-            // Column3
+            // ColCategory
             // 
-            this.Column3.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column3.HeaderText = "Kategori";
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.ColCategory.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColCategory.HeaderText = "Kategori";
+            this.ColCategory.Name = "ColCategory";
+            this.ColCategory.ReadOnly = true;
             // 
             // PodcastPlayerMainForm
             // 
@@ -432,17 +435,17 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel7;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel8;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btFeedAdd;
+        private System.Windows.Forms.Button btFeedRemove;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel9;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox tbKategoryName;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel10;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button btCategoryAdd;
+        private System.Windows.Forms.Button btCategoryRemove;
         private System.Windows.Forms.ComboBox cbFeedCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNumEpisodes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColCategory;
     }
 }
