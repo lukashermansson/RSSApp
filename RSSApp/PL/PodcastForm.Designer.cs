@@ -28,7 +28,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.lbDescription = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
             this.SuspendLayout();
             // 
             // lbTitle
@@ -76,20 +75,11 @@
             this.lbDescription.TabIndex = 4;
             this.lbDescription.Text = "label4";
             // 
-            // maskedTextBox1
-            // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(378, 229);
-            this.maskedTextBox1.Mask = "00000000-0000";
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(100, 20);
-            this.maskedTextBox1.TabIndex = 5;
-            // 
             // PodcastForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(516, 302);
-            this.Controls.Add(this.maskedTextBox1);
             this.Controls.Add(this.lbDescription);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.button1);
@@ -109,6 +99,5 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lbDescription;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
     }
 }
