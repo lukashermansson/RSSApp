@@ -121,6 +121,9 @@ namespace RSSApp.PL {
         }
 
         private void lbEpisodes_DoubleClick(object sender, EventArgs e) {
+            if (lbEpisodes.SelectedItems.Count == 0) {
+                return;
+            }
             if (lbEpisodes.SelectedItems[0] != null) {
                 var podcast = (RSSItem)lbEpisodes.SelectedItems[0];
 
