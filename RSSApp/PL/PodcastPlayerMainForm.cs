@@ -127,7 +127,7 @@ namespace RSSApp.PL {
             if (lbEpisodes.SelectedItems[0] != null) {
                 var podcast = (RSSItem)lbEpisodes.SelectedItems[0];
 
-                new PodcastForm(podcast);
+                new PodcstItem(podcast);
             }
         }
     }
