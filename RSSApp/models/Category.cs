@@ -11,6 +11,8 @@ namespace RSSApp.models {
         public Category(string categoryName) {
             this.Name = categoryName;
         }
+        public Category() {
+        }
         public override string ToString() {
             return Name;
         }

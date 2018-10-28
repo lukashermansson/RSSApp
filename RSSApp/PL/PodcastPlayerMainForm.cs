@@ -16,34 +16,69 @@ namespace RSSApp.PL {
     public partial class PodcastPlayerMainForm : Form {
 
 
-        private FeedsController Feeds { get; set; }
-        private CategoriesController categories { get; set; }
+
+
         public PodcastPlayerMainForm() {
-            Feeds = new FeedsController();
-            categories = new CategoriesController();
+
+
+            
+
 
             InitializeComponent();
-        }
 
+
+           
+            loadPersistance();
+
+
+            
+        }
+        private void loadPersistance() {
+            PersitanceController controller = new PersitanceController();
+            var file = controller.Read();
+
+            foreach (var category in file.Categories) {
+                CategoriesController.AddCategory(category);
+            }
+            foreach (var feed in file.feeds)
+            {
+                feed.InitializeCategory();
+                FeedsController.AddFeed(feed);
+            }
+
+
+            UpdateCategories();
+            UpdateFeedList();
+            
+        }
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e) {
 
         }
 
         private void UpdateFeedList() {
             gvFeeds.Rows.Clear();
-            foreach (var Feed in Feeds.GetFeeds()) {
+            foreach (var Feed in FeedsController.GetFeeds()) {
                 int row = gvFeeds.Rows.Add();
                 gvFeeds.Rows[row].Cells["ColName"].Value = Feed.Title;
-                gvFeeds.Rows[row].Cells["ColNumEpisodes"].Value = Feed.Podcasts.Count;
-                gvFeeds.Rows[row].Cells["ColCategory"].Value = Feed.Category.Name;
+                if (Feed.Podcasts != null)
+                {
+                    gvFeeds.Rows[row].Cells["ColNumEpisodes"].Value = Feed.Podcasts.Count;
+                }
+                else {
+                    gvFeeds.Rows[row].Cells["ColNumEpisodes"].Value = 0;
+                }
+                gvFeeds.Rows[row].Cells["ColCategory"].Value = Feed.Category;
+                //gvFeeds.Rows[row].Cells["ColCategory"].Value = Feed.Category;
                 gvFeeds.Rows[row].Tag = Feed;
             }
         }
 
         private void UpdateCategoriesList() {
             lbCategories.Items.Clear();
-            foreach (var category in categories.GetCategories()) {
+            
+            foreach (var category in CategoriesController.GetCategories()) {
                 lbCategories.Items.Add(category.ToString());
+                
             }
         }
 
@@ -51,18 +86,21 @@ namespace RSSApp.PL {
             UpdateCategoriesComboBox();
             UpdateCategoriesList();
         }
-
+        
         private void UpdateCategoriesComboBox() {
             cbFeedCategory.Items.Clear();
-            foreach (var item in categories.GetCategories()) {
+            ((DataGridViewComboBoxColumn)gvFeeds.Columns["ColCategory"]).Items.Clear();
+            foreach (var item in CategoriesController.GetCategories()) {
                 cbFeedCategory.Items.Add(item);
+                ((DataGridViewComboBoxColumn)gvFeeds.Columns["ColCategory"]).Items.Add(item);
             }
+            
         }
 
         private void btCategoryAdd_Click(object sender, EventArgs e) {
             string Kategorinamn = tbKategoryName.Text;
             try {
-                categories.AddCategory(Kategorinamn);
+                CategoriesController.AddCategory(Kategorinamn);
             } catch (ValidationExeption ex) {
                 var result = MessageBox.Show(ex.Message);
             }
@@ -77,7 +115,7 @@ namespace RSSApp.PL {
             string feedUrl = tbURL.Text;
             try {
 
-                Feeds.AddFeed(new Uri(feedUrl), (Category)cbFeedCategory.SelectedItem);
+                FeedsController.AddFeed(new Uri(feedUrl), (Category)cbFeedCategory.SelectedItem);
             } catch (Exception ex) {
                 var message = "";
                 if (ex is ValidationExeption) {
@@ -103,11 +141,14 @@ namespace RSSApp.PL {
         }
         private void PupulatePodcastList(List<RSSItem> podcasts) {
             lbEpisodes.Items.Clear();
+            if (podcasts != null) {
+                foreach (var podcast in podcasts)
+                {
 
-            foreach (var podcast in podcasts) {
-                
-                lbEpisodes.Items.Add(podcast);
+                    lbEpisodes.Items.Add(podcast);
+                }
             }
+            
         }
 
         private void gvFeeds_SelectionChanged(object sender, EventArgs e) {
@@ -129,6 +170,28 @@ namespace RSSApp.PL {
 
                 new PodcstItem(podcast);
             }
+        }
+
+        private void PodcastPlayerMainForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var persitanceController = new PersitanceController();
+            persitanceController.Write(new PersistantFile(FeedsController.GetFeeds(), CategoriesController.GetCategories()));
+            
+        }
+
+        private void gvFeeds_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            var dgv = (DataGridView) sender; 
+            var row = dgv.Rows[e.RowIndex];
+
+            ((RSSFeed)row.Tag).Title = (String) row.Cells["ColName"].Value;
+
+            UpdateFeedList();
+        }
+
+        private void gvFeeds_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.ThrowException = false;
         }
     }
 }

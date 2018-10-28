@@ -9,16 +9,11 @@ using System.Threading.Tasks;
 
 namespace RSSApp.BLL {
     class FeedsController {
-        private List<RSSFeed> PodcastFeeds = new List<RSSFeed>();
+        private static List<RSSFeed> PodcastFeeds = new List<RSSFeed>();
 
-
-        public FeedsController() {
-
-
-
-           
-        }
-        public void AddFeed(Uri uri, Category category) {
+        
+      
+        public static void AddFeed(Uri uri, Category category) {
             if (category == null) {
                 throw new ArgumentException();
             }
@@ -30,7 +25,7 @@ namespace RSSApp.BLL {
                 throw ex;
             } 
         }
-        public void AddFeed(RSSFeed feed) {
+        public static void AddFeed(RSSFeed feed) {
             try {
                 Validation.ValidateFeed(feed);
             } catch (ValidationExeption ex) {
@@ -41,7 +36,7 @@ namespace RSSApp.BLL {
         }
         
 
-        public List<RSSFeed> GetFeeds() {
+        public static List<RSSFeed> GetFeeds() {
             return PodcastFeeds;
         }
     }

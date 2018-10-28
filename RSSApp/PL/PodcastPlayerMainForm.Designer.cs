@@ -23,12 +23,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gvFeeds = new System.Windows.Forms.DataGridView();
             this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ColNumEpisodes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCategory = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCategory = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -50,6 +51,7 @@
             this.btCategoryRemove = new System.Windows.Forms.Button();
             this.lbEpisodes = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvFeeds)).BeginInit();
@@ -61,6 +63,7 @@
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanel1
@@ -112,9 +115,10 @@
             this.gvFeeds.Location = new System.Drawing.Point(3, 3);
             this.gvFeeds.MultiSelect = false;
             this.gvFeeds.Name = "gvFeeds";
-            this.gvFeeds.ReadOnly = true;
             this.gvFeeds.Size = new System.Drawing.Size(534, 221);
             this.gvFeeds.TabIndex = 0;
+            this.gvFeeds.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFeeds_CellValueChanged);
+            this.gvFeeds.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gvFeeds_DataError);
             this.gvFeeds.SelectionChanged += new System.EventHandler(this.gvFeeds_SelectionChanged);
             // 
             // ColName
@@ -122,7 +126,6 @@
             this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ColName.HeaderText = "Namn";
             this.ColName.Name = "ColName";
-            this.ColName.ReadOnly = true;
             // 
             // ColNumEpisodes
             // 
@@ -135,9 +138,11 @@
             // ColCategory
             // 
             this.ColCategory.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColCategory.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
             this.ColCategory.HeaderText = "Kategori";
             this.ColCategory.Name = "ColCategory";
-            this.ColCategory.ReadOnly = true;
+            this.ColCategory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColCategory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // tableLayoutPanel4
             // 
@@ -392,6 +397,10 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(8, 8);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // categoriesControllerBindingSource
+            // 
+            this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
+            // 
             // PodcastPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -401,6 +410,7 @@
             this.MinimumSize = new System.Drawing.Size(831, 440);
             this.Name = "PodcastPlayerMainForm";
             this.Text = "PodcastPlayerMainForm";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PodcastPlayerMainForm_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gvFeeds)).EndInit();
@@ -415,6 +425,7 @@
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -447,6 +458,7 @@
         private System.Windows.Forms.ComboBox cbFeedCategory;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColNumEpisodes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColCategory;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColCategory;
+        private System.Windows.Forms.BindingSource categoriesControllerBindingSource;
     }
 }

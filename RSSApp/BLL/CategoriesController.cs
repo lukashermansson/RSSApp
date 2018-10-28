@@ -9,12 +9,11 @@ using System.Threading.Tasks;
 namespace RSSApp.BLL {
     public class CategoriesController {
 
-        private List<Category> Categories = new List<Category>();
+        private static List<Category> Categories = new List<Category>();
 
-        public CategoriesController() {
-        }
+ 
 
-        public void AddCategory(Category category) {
+        public static void AddCategory(Category category) {
             try {
                 Validation.ValidateCategory(category);
             } catch (ValidationExeption ex) {
@@ -25,7 +24,7 @@ namespace RSSApp.BLL {
 
 
         }
-        public void AddCategory(string categoryName) {
+        public static void AddCategory(string categoryName) {
             var category = new Category(categoryName);
             
             try {
@@ -34,8 +33,17 @@ namespace RSSApp.BLL {
                 throw ex;
             }
         }
-
-        public List<Category> GetCategories() {
+        public static Category GetCategory(string Name) {
+            foreach (var category in Categories) {
+                if (category.Name == Name) {
+                    return category;
+                }
+            }
+            var newCategory = new Category(Name);
+            AddCategory(newCategory);
+            return newCategory;
+        }
+        public static List<Category> GetCategories() {
             return Categories;
         }
     }
