@@ -13,18 +13,21 @@ namespace RSSApp.models {
 
         public Uri URI { get; set; }
         public List<RSSItem> Podcasts { get; set; }
-        public String Title { get; set; }
+        public String Title { get => _title; set => _title = value; }
         public Category Category { get; set; }
         private string CategoryName;
+        private string _title;
 
         public RSSFeed() { }
-        public RSSFeed(Uri URI) {
+        public RSSFeed(Uri URI)
+        {
             this.URI = URI;
             Podcasts = new List<RSSItem>();
 
-            
+
         }
-        public void InitializeCategory() {
+        public void InitializeCategory()
+        {
             Category = CategoriesController.GetCategory(CategoryName);
         }
         public XmlSchema GetSchema()
@@ -34,8 +37,8 @@ namespace RSSApp.models {
 
         public void ReadXml(XmlReader reader)
         {
-            
-            
+
+
             Title = reader.GetAttribute("Title");
             CategoryName = reader.GetAttribute("Category");
             URI = new Uri(reader.GetAttribute("URI"));

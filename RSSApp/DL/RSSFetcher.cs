@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ServiceModel.Syndication;
+    using System.Threading.Tasks;
     using System.Xml;
 
     public class RSSFetcher : IFetch<RSSFeed> {
@@ -23,7 +24,19 @@
 
             return RSSFeedFromSyndicationItem(feed);
         }
-       
+        public async Task<RSSFeed> FetchAsync()
+        {
+
+            XmlReader reader = XmlReader.Create(FetchURL.ToString());
+            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            reader.Close();
+
+            RSSFeedFromSyndicationItem(feed);
+
+
+            return RSSFeedFromSyndicationItem(feed);
+        }
+
         private RSSFeed RSSFeedFromSyndicationItem(SyndicationFeed feed) {
             RSSFeed Output = new RSSFeed(FetchURL);
             Output.Title = feed.Title.Text;

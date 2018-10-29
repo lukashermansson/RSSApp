@@ -37,11 +37,11 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.cbFeedCategory = new System.Windows.Forms.ComboBox();
+            this.categoriesControllerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.btFeedAdd = new System.Windows.Forms.Button();
             this.btFeedRemove = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
-            this.lbCategories = new System.Windows.Forms.ListBox();
             this.tableLayoutPanel5 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel9 = new System.Windows.Forms.TableLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -49,6 +49,7 @@
             this.tableLayoutPanel10 = new System.Windows.Forms.TableLayoutPanel();
             this.btCategoryAdd = new System.Windows.Forms.Button();
             this.btCategoryRemove = new System.Windows.Forms.Button();
+            this.lvCategories = new System.Windows.Forms.ListView();
             this.lbEpisodes = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -58,6 +59,7 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
@@ -231,6 +233,10 @@
             this.cbFeedCategory.Size = new System.Drawing.Size(174, 21);
             this.cbFeedCategory.TabIndex = 1;
             // 
+            // categoriesControllerBindingSource1
+            // 
+            this.categoriesControllerBindingSource1.DataSource = typeof(RSSApp.BLL.CategoriesController);
+            // 
             // tableLayoutPanel8
             // 
             this.tableLayoutPanel8.ColumnCount = 2;
@@ -272,8 +278,8 @@
             // 
             this.tableLayoutPanel3.ColumnCount = 1;
             this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.lbCategories, 0, 0);
             this.tableLayoutPanel3.Controls.Add(this.tableLayoutPanel5, 0, 1);
+            this.tableLayoutPanel3.Controls.Add(this.lvCategories, 0, 0);
             this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel3.Location = new System.Drawing.Point(540, 0);
             this.tableLayoutPanel3.Margin = new System.Windows.Forms.Padding(0);
@@ -283,15 +289,6 @@
             this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanel3.Size = new System.Drawing.Size(541, 287);
             this.tableLayoutPanel3.TabIndex = 1;
-            // 
-            // lbCategories
-            // 
-            this.lbCategories.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lbCategories.FormattingEnabled = true;
-            this.lbCategories.Location = new System.Drawing.Point(3, 3);
-            this.lbCategories.Name = "lbCategories";
-            this.lbCategories.Size = new System.Drawing.Size(535, 221);
-            this.lbCategories.TabIndex = 0;
             // 
             // tableLayoutPanel5
             // 
@@ -380,6 +377,19 @@
             this.btCategoryRemove.Text = "Ta bort";
             this.btCategoryRemove.UseVisualStyleBackColor = true;
             // 
+            // lvCategories
+            // 
+            this.lvCategories.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvCategories.LabelEdit = true;
+            this.lvCategories.Location = new System.Drawing.Point(3, 3);
+            this.lvCategories.MultiSelect = false;
+            this.lvCategories.Name = "lvCategories";
+            this.lvCategories.Size = new System.Drawing.Size(535, 221);
+            this.lvCategories.TabIndex = 2;
+            this.lvCategories.UseCompatibleStateImageBehavior = false;
+            this.lvCategories.View = System.Windows.Forms.View.List;
+            this.lvCategories.AfterLabelEdit += new System.Windows.Forms.LabelEditEventHandler(this.lvCategories_AfterLabelEdit);
+            // 
             // lbEpisodes
             // 
             this.lbEpisodes.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -419,6 +429,7 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).EndInit();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
@@ -438,7 +449,6 @@
         private System.Windows.Forms.DataGridView gvFeeds;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel4;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
-        private System.Windows.Forms.ListBox lbCategories;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel5;
         private System.Windows.Forms.ListBox lbEpisodes;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel6;
@@ -460,5 +470,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ColNumEpisodes;
         private System.Windows.Forms.DataGridViewComboBoxColumn ColCategory;
         private System.Windows.Forms.BindingSource categoriesControllerBindingSource;
+        private System.Windows.Forms.ListView lvCategories;
+        private System.Windows.Forms.BindingSource categoriesControllerBindingSource1;
     }
 }

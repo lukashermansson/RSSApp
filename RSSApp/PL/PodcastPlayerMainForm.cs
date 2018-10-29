@@ -27,11 +27,12 @@ namespace RSSApp.PL {
             InitializeComponent();
 
 
-           
+
             loadPersistance();
 
 
-            
+
+
         }
         private void loadPersistance() {
             PersitanceController controller = new PersitanceController();
@@ -74,11 +75,15 @@ namespace RSSApp.PL {
         }
 
         private void UpdateCategoriesList() {
-            lbCategories.Items.Clear();
+            lvCategories.Items.Clear();
             
             foreach (var category in CategoriesController.GetCategories()) {
-                lbCategories.Items.Add(category.ToString());
-                
+                ListViewItem item = new ListViewItem();
+                item.Text = category.Name;
+                item.Tag = category;
+                lvCategories.Items.Add(item);
+
+
             }
         }
 
@@ -181,17 +186,55 @@ namespace RSSApp.PL {
 
         private void gvFeeds_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
-            var dgv = (DataGridView) sender; 
+           
+            var dgv = gvFeeds;
+            if (dgv.Rows.Count < 0) {
+                return;
+            }
+            if (e.RowIndex < 0) {
+                return;
+            }
             var row = dgv.Rows[e.RowIndex];
-
-            ((RSSFeed)row.Tag).Title = (String) row.Cells["ColName"].Value;
-
+            if (row.Tag == null) {
+                return;
+            }
+            
+            var rssObject = (RSSFeed)row.Tag;
+            rssObject.Title = (String) row.Cells["ColName"].Value;
+            var temp = row.Cells["colCategory"].Value;
+            
+            if (temp is Category)
+            {
+                rssObject.Category = (Category)temp;
+            }
+            else if (temp is String) {
+                rssObject.Category = CategoriesController.GetCategory((String)temp);
+            }
             UpdateFeedList();
         }
 
         private void gvFeeds_DataError(object sender, DataGridViewDataErrorEventArgs e)
         {
             e.ThrowException = false;
+        }
+
+        private void lvCategories_AfterLabelEdit(object sender, LabelEditEventArgs e)
+        {
+            var item = (ListViewItem)lvCategories.Items[e.Item];
+            var category = (Category)item.Tag;
+            
+            try {
+                Validation.ValidateCategory(new Category(e.Label));
+                
+                
+            }
+            catch (Exception ex) {
+                e.CancelEdit = true;
+                return;
+            }
+            category.Name = e.Label;
+            UpdateCategories();
+
         }
     }
 }
