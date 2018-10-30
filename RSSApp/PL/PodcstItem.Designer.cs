@@ -61,6 +61,7 @@
             this.btPlay.TabIndex = 0;
             this.btPlay.Text = "Spela";
             this.btPlay.UseVisualStyleBackColor = true;
+            this.btPlay.Click += new System.EventHandler(this.btPlay_Click);
             // 
             // lbTitle
             // 

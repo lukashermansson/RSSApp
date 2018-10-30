@@ -37,7 +37,6 @@
             this.tableLayoutPanel7 = new System.Windows.Forms.TableLayoutPanel();
             this.label2 = new System.Windows.Forms.Label();
             this.cbFeedCategory = new System.Windows.Forms.ComboBox();
-            this.categoriesControllerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel8 = new System.Windows.Forms.TableLayoutPanel();
             this.btFeedAdd = new System.Windows.Forms.Button();
             this.btFeedRemove = new System.Windows.Forms.Button();
@@ -52,6 +51,7 @@
             this.lvCategories = new System.Windows.Forms.ListView();
             this.lbEpisodes = new System.Windows.Forms.ListBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.categoriesControllerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
@@ -59,12 +59,12 @@
             this.tableLayoutPanel4.SuspendLayout();
             this.tableLayoutPanel6.SuspendLayout();
             this.tableLayoutPanel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).BeginInit();
             this.tableLayoutPanel8.SuspendLayout();
             this.tableLayoutPanel3.SuspendLayout();
             this.tableLayoutPanel5.SuspendLayout();
             this.tableLayoutPanel9.SuspendLayout();
             this.tableLayoutPanel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
@@ -232,10 +232,6 @@
             this.cbFeedCategory.Name = "cbFeedCategory";
             this.cbFeedCategory.Size = new System.Drawing.Size(174, 21);
             this.cbFeedCategory.TabIndex = 1;
-            // 
-            // categoriesControllerBindingSource1
-            // 
-            this.categoriesControllerBindingSource1.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
             // tableLayoutPanel8
             // 
@@ -407,6 +403,10 @@
             this.flowLayoutPanel1.Size = new System.Drawing.Size(8, 8);
             this.flowLayoutPanel1.TabIndex = 0;
             // 
+            // categoriesControllerBindingSource1
+            // 
+            this.categoriesControllerBindingSource1.DataSource = typeof(RSSApp.BLL.CategoriesController);
+            // 
             // categoriesControllerBindingSource
             // 
             this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
@@ -429,13 +429,13 @@
             this.tableLayoutPanel6.PerformLayout();
             this.tableLayoutPanel7.ResumeLayout(false);
             this.tableLayoutPanel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).EndInit();
             this.tableLayoutPanel8.ResumeLayout(false);
             this.tableLayoutPanel3.ResumeLayout(false);
             this.tableLayoutPanel5.ResumeLayout(false);
             this.tableLayoutPanel9.ResumeLayout(false);
             this.tableLayoutPanel9.PerformLayout();
             this.tableLayoutPanel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.categoriesControllerBindingSource)).EndInit();
             this.ResumeLayout(false);
 

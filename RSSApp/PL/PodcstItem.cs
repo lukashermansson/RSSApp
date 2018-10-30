@@ -1,4 +1,5 @@
-﻿using RSSApp.models;
+﻿using RSSApp.BLL;
+using RSSApp.models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,6 +30,11 @@ namespace RSSApp.PL
         private void PodcstItem_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btPlay_Click(object sender, EventArgs e) {
+            var controller = new DownloadController();
+            controller.Download(podcastEpisode.PlayURL);
         }
     }
 }

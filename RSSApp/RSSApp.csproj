@@ -48,17 +48,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BLL\CategoriesController.cs" />
+    <Compile Include="BLL\DownloadController.cs" />
     <Compile Include="BLL\PersitanceController.cs" />
     <Compile Include="BLL\Validation.cs" />
     <Compile Include="BLL\FeedsController.cs" />
+    <Compile Include="DL\AudioWriter.cs" />
     <Compile Include="DL\IFetch.cs" />
     <Compile Include="DL\MP3Fetcher.cs" />
     <Compile Include="DL\RSSFetcher.cs" />
     <Compile Include="DL\XMLReader.cs" />
     <Compile Include="DL\XMLWriter.cs" />
     <Compile Include="Exeptions\ValidationExeption.cs" />
-    <Compile Include="models\Category.cs" />
     <Compile Include="models\AudioData.cs" />
+    <Compile Include="models\Category.cs" />
     <Compile Include="models\PersistantFile.cs" />
     <Compile Include="models\RSSFeed.cs" />
     <Compile Include="models\RSSItem.cs" />

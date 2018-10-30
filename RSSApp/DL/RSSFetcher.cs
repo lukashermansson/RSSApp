@@ -24,18 +24,7 @@
 
             return RSSFeedFromSyndicationItem(feed);
         }
-        public async Task<RSSFeed> FetchAsync()
-        {
-
-            XmlReader reader = XmlReader.Create(FetchURL.ToString());
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
-            reader.Close();
-
-            RSSFeedFromSyndicationItem(feed);
-
-
-            return RSSFeedFromSyndicationItem(feed);
-        }
+       
 
         private RSSFeed RSSFeedFromSyndicationItem(SyndicationFeed feed) {
             RSSFeed Output = new RSSFeed(FetchURL);
@@ -62,7 +51,8 @@
             output.Title = item.Title.Text;
             output.Description = item.Summary.Text;
             output.PublisedDate = item.PublishDate.DateTime;
-
+            //todo: playURL
+            output.PlayURL = item.Links[1].Uri;
 
             return output;
         }

@@ -131,9 +131,11 @@ namespace RSSApp.PL {
                 }
                 if (ex is XmlException) {
                     message = "Ogiltig RRS data";
+                    
                 }
                 if (ex is ArgumentException) {
                     message = "Måste ange Kategori";
+                    
                 }
                 var result = MessageBox.Show(message);
 
@@ -232,6 +234,7 @@ namespace RSSApp.PL {
                 e.CancelEdit = true;
                 return;
             }
+            
             category.Name = e.Label;
             UpdateCategories();
 

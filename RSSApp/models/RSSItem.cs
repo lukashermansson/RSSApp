@@ -8,10 +8,10 @@ namespace RSSApp.models {
 
         public String Title { get; set; }
         public String Description { get; set; }
-        public Uri MediaURI { get; set; }
         public DateTime PublisedDate { get; set; }
+        public Uri PlayURL { get; set; }
 
-        
+
 
 
         public RSSItem() {
