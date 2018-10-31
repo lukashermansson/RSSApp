@@ -17,32 +17,35 @@ namespace RSSApp.BLL {
     public class DownloadController {
 
 
-        public Uri URI;
-        private string fileName = "Audio.mp3";
+        string currentDir;
+
+
 
         public delegate void DownloadAndWriteCompletedHandler(object sender, DownloadAndWriteCompletedArgs e);
 
         public event DownloadAndWriteCompletedHandler DownloadAndWriteCompleted;
         public DownloadController() {
 
-            var currentDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
+           currentDir = System.IO.Path.GetDirectoryName(Application.ExecutablePath);
 
-            URI = new Uri(Path.Combine(currentDir, fileName));
+            
 
         }
 
         public async void DownloadAsync(Uri fetchURL) {
 
-            var fetcher = new MP3Fetcher(fetchURL);
+            var fetcher = new AudioFetcher(fetchURL);
             fetcher.DownloadCompleted += DownloadCompletedEvent;
             fetcher.FetchAsync();
 
             
         }
-
+        
 
         void DownloadCompletedEvent(object sender, DownloadDataCompletedEventArgs e) {
-            var audioData = new AudioData(e.Result, URI);
+            var pathtoFile = currentDir + "/Audio." + ((Uri)e.UserState).Segments.Last().Split('.')[1];
+            var audioData = new AudioData(e.Result, new Uri(pathtoFile));
+            
             AudioWriter.ByteArrayToFile(audioData.uri.AbsolutePath, audioData.Data);
 
             

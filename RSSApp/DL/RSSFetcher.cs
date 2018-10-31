@@ -21,7 +21,7 @@
 
             RSSFeedFromSyndicationItem(feed);
 
-
+            
             return RSSFeedFromSyndicationItem(feed);
         }
        

@@ -54,7 +54,7 @@
     <Compile Include="BLL\FeedsController.cs" />
     <Compile Include="DL\AudioWriter.cs" />
     <Compile Include="DL\IFetch.cs" />
-    <Compile Include="DL\MP3Fetcher.cs" />
+    <Compile Include="DL\AudioFetcher.cs" />
     <Compile Include="DL\RSSFetcher.cs" />
     <Compile Include="DL\XMLReader.cs" />
     <Compile Include="DL\XMLWriter.cs" />

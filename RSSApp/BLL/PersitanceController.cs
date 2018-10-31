@@ -40,11 +40,7 @@ namespace RSSApp.BLL
 
             for(int i = 0; i < items.feeds.Count; i++) {
                 var feed = items.feeds[i];
-                var fetcher = new RSSFetcher(feed.URI);
-
-                var onlineFeed = fetcher.Fetch();
-
-                feed.Podcasts = onlineFeed.Podcasts;
+                FeedsController.UpdateFeedPodcasts(feed);
                 
             }
 

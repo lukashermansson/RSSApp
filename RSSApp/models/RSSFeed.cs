@@ -26,6 +26,8 @@ namespace RSSApp.models {
 
 
         }
+
+        
         public void InitializeCategory()
         {
             Category = CategoriesController.GetCategory(CategoryName);

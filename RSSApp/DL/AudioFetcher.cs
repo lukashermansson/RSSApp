@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RSSApp.DL {
     
-    public class MP3Fetcher : IFetch<AudioData> {
+    public class AudioFetcher : IFetch<AudioData> {
         public Uri FetchURL { get; set; }
 
         
@@ -16,7 +16,7 @@ namespace RSSApp.DL {
         // Declare the event.
         public event DownloadDataCompletedEventHandler DownloadCompleted;
 
-        public MP3Fetcher(Uri uri) {
+        public AudioFetcher(Uri uri) {
             FetchURL = uri;
         }
 
@@ -32,13 +32,13 @@ namespace RSSApp.DL {
             
             using (WebClient webClient = new WebClient()) {
                 webClient.DownloadDataCompleted += DownloadDataCompletedFrom;
-                webClient.DownloadDataAsync(FetchURL);
+                webClient.DownloadDataAsync(FetchURL, FetchURL);
             }
 
             
         }
         protected virtual void OnDownloadCompleted(object sender, DownloadDataCompletedEventArgs e) {
-
+            
             if (DownloadCompleted != null) {
                 DownloadCompleted(this, e);
             }
