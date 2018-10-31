@@ -269,6 +269,7 @@
             this.btFeedRemove.TabIndex = 1;
             this.btFeedRemove.Text = "Ta bort";
             this.btFeedRemove.UseVisualStyleBackColor = true;
+            this.btFeedRemove.Click += new System.EventHandler(this.btFeedRemove_Click);
             // 
             // tableLayoutPanel3
             // 

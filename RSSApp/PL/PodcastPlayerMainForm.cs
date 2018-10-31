@@ -239,5 +239,22 @@ namespace RSSApp.PL {
             UpdateCategories();
 
         }
+
+        private void btFeedRemove_Click(object sender, EventArgs e) {
+            var dgv = gvFeeds;
+            if (dgv.SelectedRows.Count < 1) {
+                return;
+            }
+            if (dgv.SelectedRows[0] == null) {
+                return;
+            }
+            var rowIndex = dgv.SelectedRows[0].Index;
+
+            var feed = (RSSFeed)gvFeeds.Rows[rowIndex].Tag;
+            FeedsController.RemoveFeed(feed);
+
+            UpdateFeedList();
+            lbEpisodes.Items.Clear();
+        }
     }
 }

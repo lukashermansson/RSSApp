@@ -34,6 +34,11 @@ namespace RSSApp.BLL {
             
             PodcastFeeds.Add(feed);
         }
+
+        public static void RemoveFeed(RSSFeed feed) {
+            PodcastFeeds.Remove(feed);
+        }
+
         public static void UpdateFeedPodcasts(RSSFeed feed) {
             var fetcher = new RSSFetcher(feed.URI);
 
