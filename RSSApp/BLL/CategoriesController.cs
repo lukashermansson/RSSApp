@@ -46,5 +46,17 @@ namespace RSSApp.BLL {
         public static List<Category> GetCategories() {
             return Categories;
         }
+
+        public static void RemoveCategory(Category category) {
+            var feeds = FeedsController.GetFeeds();
+            foreach (var feed in feeds) {
+                if (feed.Category == category) {
+                    
+                    throw new CategoryInUseExeption();
+                    
+                }
+            }
+            Categories.Remove(category);
+        }
     }
 }

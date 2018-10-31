@@ -2,6 +2,8 @@
 using RSSApp.models;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Schema;
 using System.Xml.Serialization;
@@ -10,7 +12,7 @@ namespace RSSApp.models {
 
     public class RSSFeed : IXmlSerializable
     {
-
+        public int UpdateInterval = 500;
         public Uri URI { get; set; }
         public List<RSSItem> Podcasts { get; set; }
         public String Title { get => _title; set => _title = value; }
@@ -26,8 +28,8 @@ namespace RSSApp.models {
 
 
         }
-
         
+
         public void InitializeCategory()
         {
             Category = CategoriesController.GetCategory(CategoryName);

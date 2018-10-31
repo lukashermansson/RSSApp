@@ -58,6 +58,7 @@
     <Compile Include="DL\RSSFetcher.cs" />
     <Compile Include="DL\XMLReader.cs" />
     <Compile Include="DL\XMLWriter.cs" />
+    <Compile Include="Exeptions\CategoryInUseExeption.cs" />
     <Compile Include="Exeptions\ValidationExeption.cs" />
     <Compile Include="models\AudioData.cs" />
     <Compile Include="models\Category.cs" />

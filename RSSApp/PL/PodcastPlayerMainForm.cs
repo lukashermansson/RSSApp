@@ -21,8 +21,8 @@ namespace RSSApp.PL {
         public PodcastPlayerMainForm() {
 
 
-            
 
+            FeedsController.UpdatedFeed += UpdatedFeed;
 
             InitializeComponent();
 
@@ -30,10 +30,16 @@ namespace RSSApp.PL {
 
             loadPersistance();
 
-
+            
 
 
         }
+
+        private void UpdatedFeed(Object sender, EventArgs e) {
+            
+            
+        }
+
         private void loadPersistance() {
             PersitanceController controller = new PersitanceController();
             var file = controller.Read();
@@ -44,7 +50,7 @@ namespace RSSApp.PL {
             foreach (var feed in file.feeds)
             {
                 feed.InitializeCategory();
-                FeedsController.AddFeed(feed);
+                FeedsController.AddFeedAsync(feed);
             }
 
 
@@ -120,7 +126,7 @@ namespace RSSApp.PL {
             string feedUrl = tbURL.Text;
             try {
 
-                FeedsController.AddFeed(new Uri(feedUrl), (Category)cbFeedCategory.SelectedItem);
+                FeedsController.AddFeedAsync(new Uri(feedUrl), (Category)cbFeedCategory.SelectedItem);
             } catch (Exception ex) {
                 var message = "";
                 if (ex is ValidationExeption) {
@@ -183,7 +189,7 @@ namespace RSSApp.PL {
         {
             var persitanceController = new PersitanceController();
             persitanceController.Write(new PersistantFile(FeedsController.GetFeeds(), CategoriesController.GetCategories()));
-            
+            FeedsController.CleanUp();
         }
 
         private void gvFeeds_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -255,6 +261,23 @@ namespace RSSApp.PL {
 
             UpdateFeedList();
             lbEpisodes.Items.Clear();
+        }
+
+        private void btCategoryRemove_Click(object sender, EventArgs e) {
+            if (lvCategories.SelectedItems[0] == null) {
+                return;
+
+            }
+
+            var index = lvCategories.SelectedIndices[0];
+
+            var category = (Category)lvCategories.Items[index].Tag;
+            try {
+                CategoriesController.RemoveCategory(category);
+            } catch (CategoryInUseExeption) {
+                MessageBox.Show("Kategorin är i andvändning");
+            }
+            UpdateCategories();
         }
     }
 }

@@ -373,6 +373,7 @@
             this.btCategoryRemove.TabIndex = 1;
             this.btCategoryRemove.Text = "Ta bort";
             this.btCategoryRemove.UseVisualStyleBackColor = true;
+            this.btCategoryRemove.Click += new System.EventHandler(this.btCategoryRemove_Click);
             // 
             // lvCategories
             // 
