@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -33,8 +34,18 @@ namespace RSSApp.PL
         }
 
         private void btPlay_Click(object sender, EventArgs e) {
+            btPlay.Enabled = false;
             var controller = new DownloadController();
-            controller.Download(podcastEpisode.PlayURL);
+            controller.DownloadAndWriteCompleted += DownloadCompleted;
+            controller.DownloadAsync(podcastEpisode.PlayURL);
+        }
+
+        void DownloadCompleted(object sender, DownloadAndWriteCompletedArgs e) {
+            Process proc = new Process();
+            proc.StartInfo.FileName = e.audioData.uri.AbsolutePath;
+            proc.StartInfo.UseShellExecute = true;
+            proc.Start();
+            btPlay.Enabled = true;
         }
     }
 }
