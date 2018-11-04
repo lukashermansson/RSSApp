@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace RSSApp.BLL {
     class FeedsController {
         private static List<RSSFeed> PodcastFeeds = new List<RSSFeed>();
-        private static CancellationTokenSource tokenSource = new CancellationTokenSource();
+        
 
         public delegate void UpdatedFeedEventHandler(object sender, EventArgs e);
 
@@ -36,30 +36,17 @@ namespace RSSApp.BLL {
             } catch (ValidationExeption ex) {
                 throw ex;
             }
-            
+            feed.setUpdateInterval(300000);
+            feed.StartTimer();
+            feed.TimerTick += OnUpdatedFeed;
             PodcastFeeds.Add(feed);
-            CancellationToken token = tokenSource.Token;
-            await Task.Run(async () => {
-                await UpdateFeedPodcastsInterervalStart(token, feed);
-            });
+            
         }
-        public static async Task UpdateFeedPodcastsInterervalStart(CancellationToken cancellationToken, RSSFeed feed) {
-            while (true) {
-                await Task.Delay(feed.UpdateInterval);
-                await UpdateFeedPodcasts(feed);
-                OnUpdatedFeed();
-
-                if (cancellationToken.IsCancellationRequested)
-                    break;
-
-            }
-        }
+        
         public static void RemoveFeed(RSSFeed feed) {
             PodcastFeeds.Remove(feed);
         }
-        public static void CleanUp() {
-            tokenSource.Cancel();
-        }
+        
 
         public static async Task UpdateFeedPodcasts(RSSFeed feed) {
             var fetcher = new RSSFetcher(feed.URI);
@@ -75,7 +62,9 @@ namespace RSSApp.BLL {
         }
 
 
-        static void OnUpdatedFeed() {
+        static async void OnUpdatedFeed(object sender, EventArgs e) {
+
+            await UpdateFeedPodcasts((RSSFeed)sender);
             if (UpdatedFeed != null) {
                 UpdatedFeed(typeof(FeedsController), EventArgs.Empty);
             }

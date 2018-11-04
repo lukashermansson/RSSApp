@@ -20,6 +20,7 @@ namespace RSSApp.BLL {
                 throw ex;
                 
             }
+            
             Categories.Add(category);
 
 
@@ -58,5 +59,8 @@ namespace RSSApp.BLL {
             }
             Categories.Remove(category);
         }
+
+
+      
     }
 }

@@ -30,13 +30,13 @@ namespace RSSApp.PL {
 
             loadPersistance();
 
-            
 
+            FeedsController.UpdatedFeed += UpdatedFeed;
 
         }
 
         private void UpdatedFeed(Object sender, EventArgs e) {
-            
+            UpdateFeedList();
             
         }
 
@@ -67,6 +67,8 @@ namespace RSSApp.PL {
             foreach (var Feed in FeedsController.GetFeeds()) {
                 int row = gvFeeds.Rows.Add();
                 gvFeeds.Rows[row].Cells["ColName"].Value = Feed.Title;
+                gvFeeds.Rows[row].Cells["ColTimer"].Value = Feed.getUpdateInterval().ToString();
+
                 if (Feed.Podcasts != null)
                 {
                     gvFeeds.Rows[row].Cells["ColNumEpisodes"].Value = Feed.Podcasts.Count;
@@ -189,7 +191,7 @@ namespace RSSApp.PL {
         {
             var persitanceController = new PersitanceController();
             persitanceController.Write(new PersistantFile(FeedsController.GetFeeds(), CategoriesController.GetCategories()));
-            FeedsController.CleanUp();
+           
         }
 
         private void gvFeeds_CellValueChanged(object sender, DataGridViewCellEventArgs e)
@@ -218,6 +220,14 @@ namespace RSSApp.PL {
             else if (temp is String) {
                 rssObject.Category = CategoriesController.GetCategory((String)temp);
             }
+            
+            if (int.TryParse((String)row.Cells["ColTimer"].Value, out int value)) {
+                rssObject.setUpdateInterval(value);
+            } 
+
+
+            
+
             UpdateFeedList();
         }
 

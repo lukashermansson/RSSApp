@@ -27,9 +27,6 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.gvFeeds = new System.Windows.Forms.DataGridView();
-            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColNumEpisodes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColCategory = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel6 = new System.Windows.Forms.TableLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -53,6 +50,10 @@
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.categoriesControllerBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.categoriesControllerBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ColName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColTimer = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColNumEpisodes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColCategory = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableLayoutPanel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvFeeds)).BeginInit();
@@ -111,6 +112,7 @@
             this.gvFeeds.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gvFeeds.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ColName,
+            this.ColTimer,
             this.ColNumEpisodes,
             this.ColCategory});
             this.gvFeeds.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -122,29 +124,6 @@
             this.gvFeeds.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvFeeds_CellValueChanged);
             this.gvFeeds.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gvFeeds_DataError);
             this.gvFeeds.SelectionChanged += new System.EventHandler(this.gvFeeds_SelectionChanged);
-            // 
-            // ColName
-            // 
-            this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColName.HeaderText = "Namn";
-            this.ColName.Name = "ColName";
-            // 
-            // ColNumEpisodes
-            // 
-            this.ColNumEpisodes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColNumEpisodes.HeaderText = "Avsnitt";
-            this.ColNumEpisodes.Name = "ColNumEpisodes";
-            this.ColNumEpisodes.ReadOnly = true;
-            this.ColNumEpisodes.ToolTipText = "Antal avsnitt";
-            // 
-            // ColCategory
-            // 
-            this.ColCategory.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ColCategory.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
-            this.ColCategory.HeaderText = "Kategori";
-            this.ColCategory.Name = "ColCategory";
-            this.ColCategory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColCategory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // tableLayoutPanel4
             // 
@@ -413,6 +392,34 @@
             // 
             this.categoriesControllerBindingSource.DataSource = typeof(RSSApp.BLL.CategoriesController);
             // 
+            // ColName
+            // 
+            this.ColName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColName.HeaderText = "Namn";
+            this.ColName.Name = "ColName";
+            // 
+            // ColTimer
+            // 
+            this.ColTimer.HeaderText = "Timer";
+            this.ColTimer.Name = "ColTimer";
+            // 
+            // ColNumEpisodes
+            // 
+            this.ColNumEpisodes.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColNumEpisodes.HeaderText = "Avsnitt";
+            this.ColNumEpisodes.Name = "ColNumEpisodes";
+            this.ColNumEpisodes.ReadOnly = true;
+            this.ColNumEpisodes.ToolTipText = "Antal avsnitt";
+            // 
+            // ColCategory
+            // 
+            this.ColCategory.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ColCategory.DisplayStyle = System.Windows.Forms.DataGridViewComboBoxDisplayStyle.ComboBox;
+            this.ColCategory.HeaderText = "Kategori";
+            this.ColCategory.Name = "ColCategory";
+            this.ColCategory.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColCategory.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // PodcastPlayerMainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -468,11 +475,12 @@
         private System.Windows.Forms.Button btCategoryAdd;
         private System.Windows.Forms.Button btCategoryRemove;
         private System.Windows.Forms.ComboBox cbFeedCategory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColNumEpisodes;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ColCategory;
         private System.Windows.Forms.BindingSource categoriesControllerBindingSource;
         private System.Windows.Forms.ListView lvCategories;
         private System.Windows.Forms.BindingSource categoriesControllerBindingSource1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColTimer;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColNumEpisodes;
+        private System.Windows.Forms.DataGridViewComboBoxColumn ColCategory;
     }
 }
