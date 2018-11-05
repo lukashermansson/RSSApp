@@ -32,15 +32,15 @@ namespace RSSApp.BLL {
 
         }
 
-        public async void DownloadAsync(Uri fetchURL) {
+        public void Download(Uri fetchURL) {
 
             var fetcher = new AudioFetcher(fetchURL);
             fetcher.DownloadCompleted += DownloadCompletedEvent;
             fetcher.FetchAsync();
 
-            
+
         }
-        
+
 
         void DownloadCompletedEvent(object sender, DownloadDataCompletedEventArgs e) {
             var pathtoFile = currentDir + "/Audio." + ((Uri)e.UserState).Segments.Last().Split('.')[1];

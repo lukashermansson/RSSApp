@@ -37,7 +37,7 @@ namespace RSSApp.PL
             btPlay.Enabled = false;
             var controller = new DownloadController();
             controller.DownloadAndWriteCompleted += DownloadCompleted;
-            controller.DownloadAsync(podcastEpisode.PlayURL);
+            controller.Download(podcastEpisode.PlayURL);
         }
 
         void DownloadCompleted(object sender, DownloadAndWriteCompletedArgs e) {

@@ -29,11 +29,12 @@ namespace RSSApp.models {
         public RSSFeed(Uri URI) {
             this.URI = URI;
             Podcasts = new List<RSSItem>();
-            timer.Interval = UpdateInterval;
+            
             
         }
 
         public void StartTimer() {
+            timer.Interval = UpdateInterval;
             timer.Tick += onTimerTick;
             timer.Enabled = true;
         }
@@ -68,7 +69,12 @@ namespace RSSApp.models {
             Title = reader.GetAttribute("Title");
             CategoryName = reader.GetAttribute("Category");
             URI = new Uri(reader.GetAttribute("URI"));
-            //TODO: add percistance
+            try {
+                var interval = reader.GetAttribute("UpdateInterval");
+                UpdateInterval = int.Parse(interval);
+            } catch {
+                
+            }
 
 
             reader.Skip();
@@ -79,6 +85,7 @@ namespace RSSApp.models {
             writer.WriteAttributeString("Title", Title);
             writer.WriteAttributeString("Category", Category.Name);
             writer.WriteAttributeString("URI", URI.AbsoluteUri);
+            writer.WriteAttributeString("UpdateInterval", UpdateInterval.ToString());
         }
 
         protected virtual void onTimerTick(object sender, EventArgs e) {

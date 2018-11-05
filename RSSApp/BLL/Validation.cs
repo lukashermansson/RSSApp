@@ -22,5 +22,12 @@ namespace RSSApp.BLL {
             }
             return;
         }
+
+        public static void ValidateRefresh(int Time) {
+            if (Time < 10000) {
+                throw new TimeSpanToShortExeption();
+
+            }
+        }
     }
 }

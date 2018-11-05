@@ -30,7 +30,7 @@ namespace RSSApp.BLL
             var reader = new XMLReader(URL);
             try {
                 xmlString = reader.read();
-            } catch (FileNotFoundException ex) {
+            } catch (FileNotFoundException) {
                 
             }
 

@@ -45,7 +45,17 @@ namespace RSSApp.BLL {
             return newCategory;
         }
         public static List<Category> GetCategories() {
-            return Categories;
+
+            var Query =
+                    from categoty in Categories
+                    orderby categoty.Name ascending
+                select categoty;
+
+            var sortedList = new List<Category>();
+            foreach (var cat in Query) {
+                sortedList.Add(cat);
+            }
+            return sortedList;
         }
 
         public static void RemoveCategory(Category category) {

@@ -18,53 +18,55 @@ namespace RSSApp.BLL {
         // Declare the event.
         public static event UpdatedFeedEventHandler UpdatedFeed;
 
-        public static async Task AddFeedAsync(Uri uri, Category category) {
+        public static void AddFeed(Uri uri, Category category) {
             if (category == null) {
                 throw new ArgumentException();
             }
             try {
                 var feed = new RSSFetcher(uri).Fetch();
                 feed.Category = category;
-                await AddFeedAsync(feed);
+                AddFeed(feed);
             } catch (ValidationExeption ex) {
                 throw ex;
-            } 
+            }
         }
-        public static async Task AddFeedAsync(RSSFeed feed) {
+        public static void AddFeed(RSSFeed feed) {
             try {
                 Validation.ValidateFeed(feed);
             } catch (ValidationExeption ex) {
                 throw ex;
             }
-            feed.setUpdateInterval(300000);
+            
             feed.StartTimer();
             feed.TimerTick += OnUpdatedFeed;
             PodcastFeeds.Add(feed);
-            
+
         }
-        
+
         public static void RemoveFeed(RSSFeed feed) {
             PodcastFeeds.Remove(feed);
         }
-        
 
-        public static async Task UpdateFeedPodcasts(RSSFeed feed) {
+
+        public async static void UpdateFeedPodcasts(RSSFeed feed) {
             var fetcher = new RSSFetcher(feed.URI);
 
             var onlineFeed = fetcher.Fetch();
-
-            feed.Podcasts = onlineFeed.Podcasts;
+            await Task.Run(() => {
+                feed.Podcasts = onlineFeed.Podcasts;
+            });
+           
         }
-        
+
 
         public static List<RSSFeed> GetFeeds() {
             return PodcastFeeds;
         }
 
 
-        static async void OnUpdatedFeed(object sender, EventArgs e) {
+        static void OnUpdatedFeed(object sender, EventArgs e) {
 
-            await UpdateFeedPodcasts((RSSFeed)sender);
+            UpdateFeedPodcasts((RSSFeed)sender);
             if (UpdatedFeed != null) {
                 UpdatedFeed(typeof(FeedsController), EventArgs.Empty);
             }

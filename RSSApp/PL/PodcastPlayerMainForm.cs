@@ -14,7 +14,8 @@ using System.Xml;
 
 namespace RSSApp.PL {
     public partial class PodcastPlayerMainForm : Form {
-
+        public bool IsEditing = false;
+        
 
 
 
@@ -36,7 +37,11 @@ namespace RSSApp.PL {
         }
 
         private void UpdatedFeed(Object sender, EventArgs e) {
-            UpdateFeedList();
+
+            if (!IsEditing) {
+                UpdateFeedList();
+            }
+            
             
         }
 
@@ -50,7 +55,7 @@ namespace RSSApp.PL {
             foreach (var feed in file.feeds)
             {
                 feed.InitializeCategory();
-                FeedsController.AddFeedAsync(feed);
+                FeedsController.AddFeed(feed);
             }
 
 
@@ -128,7 +133,7 @@ namespace RSSApp.PL {
             string feedUrl = tbURL.Text;
             try {
 
-                FeedsController.AddFeedAsync(new Uri(feedUrl), (Category)cbFeedCategory.SelectedItem);
+                FeedsController.AddFeed(new Uri(feedUrl), (Category)cbFeedCategory.SelectedItem);
             } catch (Exception ex) {
                 var message = "";
                 if (ex is ValidationExeption) {
@@ -222,10 +227,18 @@ namespace RSSApp.PL {
             }
             
             if (int.TryParse((String)row.Cells["ColTimer"].Value, out int value)) {
-                rssObject.setUpdateInterval(value);
-            } 
+                try {
+                    Validation.ValidateRefresh(value);
+                    rssObject.setUpdateInterval(value);
+                } catch(TimeSpanToShortExeption) {
 
+                }
+                
+                
+                
+            }
 
+            IsEditing = false;
             
 
             UpdateFeedList();
@@ -246,7 +259,7 @@ namespace RSSApp.PL {
                 
                 
             }
-            catch (Exception ex) {
+            catch (Exception) {
                 e.CancelEdit = true;
                 return;
             }
@@ -289,5 +302,22 @@ namespace RSSApp.PL {
             }
             UpdateCategories();
         }
+
+        private void gvFeeds_CellBeginEdit(object sender, DataGridViewCellCancelEventArgs e) {
+            IsEditing = true;
+        }
+
+        private void gvFeeds_CellDoubleClick(object sender, DataGridViewCellEventArgs e) {
+            var row = gvFeeds.Rows[e.RowIndex];
+
+            var feed = (RSSFeed)row.Tag;
+
+            var edit = new EditFeed(feed);
+            edit.Updated += updatedEdit;
+        }
+        private void updatedEdit(object sender, EventArgs e) {
+            UpdateFeedList();
+        }
+        
     }
 }

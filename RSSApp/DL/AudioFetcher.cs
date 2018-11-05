@@ -28,14 +28,14 @@ namespace RSSApp.DL {
 
             return new AudioData(audioBytes, FetchURL);
         }
-        public async Task FetchAsync() {
-            
+        public void FetchAsync() {
+
             using (WebClient webClient = new WebClient()) {
                 webClient.DownloadDataCompleted += DownloadDataCompletedFrom;
                 webClient.DownloadDataAsync(FetchURL, FetchURL);
             }
 
-            
+
         }
         protected virtual void OnDownloadCompleted(object sender, DownloadDataCompletedEventArgs e) {
             
