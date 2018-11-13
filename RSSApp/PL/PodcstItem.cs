@@ -22,8 +22,10 @@ namespace RSSApp.PL
             podcastEpisode = podcastItem;
             InitializeComponent();
             lbTitle.Text = podcastEpisode.Title;
-            rtbDescription.Text = podcastEpisode.Description;
+            wbDescription.DocumentText = podcastEpisode.Description;
 
+
+            
 
             this.Show();
         }
@@ -46,6 +48,10 @@ namespace RSSApp.PL
             proc.StartInfo.UseShellExecute = true;
             proc.Start();
             btPlay.Enabled = true;
+        }
+
+        private void wbDescription_DocumentCompleted(object sender, WebBrowserDocumentCompletedEventArgs e) {
+            wbDescription.Document.BackColor = Color.FromKnownColor(KnownColor.Control);
         }
     }
 }

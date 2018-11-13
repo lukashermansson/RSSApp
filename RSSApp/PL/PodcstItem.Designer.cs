@@ -31,7 +31,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.btPlay = new System.Windows.Forms.Button();
             this.lbTitle = new System.Windows.Forms.Label();
-            this.rtbDescription = new System.Windows.Forms.RichTextBox();
+            this.wbDescription = new System.Windows.Forms.WebBrowser();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -41,7 +41,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.Controls.Add(this.btPlay, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.lbTitle, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.rtbDescription, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.wbDescription, 0, 1);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -75,17 +75,17 @@
             this.lbTitle.Text = "label1";
             this.lbTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // rtbDescription
+            // wbDescription
             // 
-            this.rtbDescription.BackColor = System.Drawing.SystemColors.Control;
-            this.rtbDescription.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.rtbDescription.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rtbDescription.Location = new System.Drawing.Point(3, 83);
-            this.rtbDescription.Name = "rtbDescription";
-            this.rtbDescription.ReadOnly = true;
-            this.rtbDescription.Size = new System.Drawing.Size(794, 335);
-            this.rtbDescription.TabIndex = 2;
-            this.rtbDescription.Text = "";
+            this.wbDescription.AllowNavigation = false;
+            this.wbDescription.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.wbDescription.Location = new System.Drawing.Point(3, 83);
+            this.wbDescription.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbDescription.Name = "wbDescription";
+            this.wbDescription.ScrollBarsEnabled = false;
+            this.wbDescription.Size = new System.Drawing.Size(794, 335);
+            this.wbDescription.TabIndex = 2;
+            this.wbDescription.DocumentCompleted += new System.Windows.Forms.WebBrowserDocumentCompletedEventHandler(this.wbDescription_DocumentCompleted);
             // 
             // PodcstItem
             // 
@@ -107,6 +107,6 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button btPlay;
         private System.Windows.Forms.Label lbTitle;
-        private System.Windows.Forms.RichTextBox rtbDescription;
+        private System.Windows.Forms.WebBrowser wbDescription;
     }
 }
